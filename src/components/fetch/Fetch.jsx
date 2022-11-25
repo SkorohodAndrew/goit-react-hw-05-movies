@@ -17,13 +17,14 @@ export async function fetchMoviesTrending() {
   }
 }
 
-// searchMoviesInput = async query => {
-//   try {
-//     const response = await axios.get(
-//       `${BASE_URL}/search/${media_type}?api_key=${KEY}&page=1&include_adult=false`
-//     );
-//     return response.data.hits;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+export async function searchMoviesInput(query) {
+  try {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/search/movie/?query=${query}&api_key=${KEY}`
+    );
+    const arrayMovies = await response.data.results;
+    return arrayMovies;
+  } catch (error) {
+    console.log(error);
+  }
+}
