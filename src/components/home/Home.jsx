@@ -1,6 +1,13 @@
 import { useState, useEffect } from 'react';
 import { fetchMoviesTrending } from 'components/fetch/Fetch';
 import { Link } from 'react-router-dom';
+import {
+  MoviesImage,
+  MoviesImageList,
+  Text,
+  MoviesImageImage,
+  Title,
+} from './HomeStyled';
 
 export const Home = () => {
   const [trends, setTrends] = useState([]);
@@ -14,23 +21,25 @@ export const Home = () => {
 
   return (
     <div>
-      <h1>Trending Today</h1>
-      <ul>
+      <Title>Trending Today</Title>
+      <MoviesImage>
         {trends.length > 0 &&
           trends.map(({ id, title, poster_path }) => {
             return (
-              <li to={`/movies/${id}`}>
-                <img
-                  src={`https://image.tmdb.org/t/p/w342${poster_path}`}
-                  alt={title}
-                  width={260}
-                  height={350}
-                />
-                <Link>{title}</Link>
-              </li>
+              <MoviesImageList to={`/movies/${id}`}>
+                <Link>
+                  <MoviesImageImage
+                    src={`https://image.tmdb.org/t/p/w342${poster_path}`}
+                    alt={title}
+                    width={290}
+                    height={350}
+                  />
+                  <Text>{title}</Text>
+                </Link>
+              </MoviesImageList>
             );
           })}
-      </ul>
+      </MoviesImage>
     </div>
   );
 };
