@@ -12,7 +12,7 @@ import {
 } from './MoviesStyled';
 
 export const Movies = () => {
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [movies, setMovies] = useState([]);
   const [query, setQuery] = useState('');
   const [searchParams, setSearchParams] = useSearchParams({});
@@ -21,11 +21,11 @@ export const Movies = () => {
 
   useEffect(() => {
     if (filter) {
-      setLoading(true);
+      // setLoading(true);
       searchMoviesInput(filter)
         .then(setMovies)
-        .catch(error => console.log(error))
-        .finally(setLoading(false));
+        .catch(error => console.log(error));
+      // .finally(setLoading(false));
     }
 
     if (!movies) {
