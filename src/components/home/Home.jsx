@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { fetchMoviesTrending } from 'components/fetch/Fetch';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
   MoviesImage,
   MoviesImageList,
@@ -10,6 +10,7 @@ import {
 } from './HomeStyled';
 
 export const Home = () => {
+  const location = useLocation();
   const [trends, setTrends] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -26,8 +27,8 @@ export const Home = () => {
         {trends.length > 0 &&
           trends.map(({ id, title, poster_path }) => {
             return (
-              <MoviesImageList to={`/movies/${id}`}>
-                <Link>
+              <MoviesImageList key={id}>
+                <Link to={`/movies/${id}`} state={{ from: location }}>
                   <MoviesImageImage
                     src={`https://image.tmdb.org/t/p/w342${poster_path}`}
                     alt={title}

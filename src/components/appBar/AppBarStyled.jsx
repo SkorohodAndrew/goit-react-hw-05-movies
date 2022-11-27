@@ -1,24 +1,19 @@
 import styled from '@emotion/styled';
 
-export const ButtonList = styled.div`
+export const ButtonType = styled.div`
   display: flex;
   padding-top: 10px;
   padding-bottom: 10px;
   justify-content: center;
 `;
 
-export const ButtonType = styled.div`
-  margin-right: 20px;
-`;
-
 export const ButtonNav = styled.button`
-  display: block;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
 
   margin-left: auto;
-  margin-right: auto;
+  margin-right: 20px;
   padding: 10px 20px;
   border: 0;
 
@@ -40,3 +35,7 @@ export const ButtonNav = styled.button`
     background-color: #531919;
   }
 `;
+
+// export const NavLink = styled(NavLink)`
+//   text-decoration: none;
+// `;

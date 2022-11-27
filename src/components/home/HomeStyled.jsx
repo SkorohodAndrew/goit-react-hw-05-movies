@@ -46,6 +46,10 @@ export const MoviesImageImage = styled.img`
   cursor: pointer;
 `;
 
+export const CardMoviesItem = styled.div`
+  padding: 20px;
+`;
+
 export const Text = styled.p`
   text-align: center;
   margin: 0;

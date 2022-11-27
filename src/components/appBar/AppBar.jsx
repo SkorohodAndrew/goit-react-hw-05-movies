@@ -1,18 +1,34 @@
 import { NavLink } from 'react-router-dom';
-import { ButtonList, ButtonType, ButtonNav } from './AppBarStyled';
+import { ButtonType, ButtonNav } from './AppBarStyled';
 
-const navItem = [{ text: 'Home' }, { href: 'movies', text: 'Movies' }];
+// const navItem = [
+//   { text: 'Home', href: '' },
+//   { href: 'movies', text: 'Movies' },
+// ];
 
 export const AppBar = () => {
+  // return (
+  //   <ButtonList>
+  //     {navItem.map(({ href, text, id }) => (
+  //       <ButtonType>
+  //         <NavLink to={href} key={id}>
+  //           <ButtonNav>{text}</ButtonNav>
+  //         </NavLink>
+  //       </ButtonType>
+  //     ))}
+  //   </ButtonList>
+  // );
+
   return (
-    <ButtonList>
-      {navItem.map(({ href, text }) => (
-        <ButtonType>
-          <NavLink to={href} key={href}>
-            <ButtonNav>{text}</ButtonNav>
-          </NavLink>
-        </ButtonType>
-      ))}
-    </ButtonList>
+    <>
+      <ButtonType>
+        <NavLink to="/" end>
+          <ButtonNav>Home</ButtonNav>
+        </NavLink>
+        <NavLink to="/movies">
+          <ButtonNav>Movies</ButtonNav>
+        </NavLink>
+      </ButtonType>
+    </>
   );
 };

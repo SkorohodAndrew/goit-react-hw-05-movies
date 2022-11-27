@@ -1,19 +1,23 @@
 import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, Link, useLocation } from 'react-router-dom';
 import { searchMoviesInput } from 'components/fetch/Fetch';
+import {
+  SearchForm,
+  FormInput,
+  SearchBarHeader,
+  ButtonNav,
+  MoviesImage,
+  MoviesImageList,
+  Text,
+} from './MoviesStyled';
 
 export const Movies = () => {
   const [loading, setLoading] = useState(false);
   const [movies, setMovies] = useState([]);
   const [query, setQuery] = useState('');
   const [searchParams, setSearchParams] = useSearchParams({});
-  const filter = searchParams.get('movie');
-
-  console.log(filter);
-
-  // useEffect(() => {
-  //   searchMoviesInput().then(setMovies);
-  // }, []);
+  const filter = searchParams.get('movie') ?? '';
+  const location = useLocation();
 
   useEffect(() => {
     if (filter) {
@@ -35,43 +39,51 @@ export const Movies = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    setSearchParams({ movie: query } || {});
+    setSearchParams(query !== '' ? { movie: query } : {});
+    setQuery('');
   };
 
   return (
     <div>
-      <form className="form" onChange={handleSubmit}>
-        <button type="submit" className="button">
-          Search
-        </button>
+      <SearchBarHeader>
+        <SearchForm className="form" onSubmit={handleSubmit}>
+          <ButtonNav type="submit" className="button">
+            Search
+          </ButtonNav>
 
-        <input
-          onChange={handleChange}
-          value={query}
-          name="name"
-          className="input"
-          type="text"
-          autocomplete="off"
-          autoFocus
-          placeholder="Search movies"
-        />
-      </form>
+          <FormInput
+            onChange={handleChange}
+            value={query}
+            name="name"
+            className="input"
+            type="text"
+            autocomplete="off"
+            autoFocus
+            placeholder="Search movies"
+          />
+        </SearchForm>
+      </SearchBarHeader>
 
       {movies && (
-        <ul>
-          {movies.map(({ id, title, poster_path }) => {
+        <MoviesImage>
+          {movies.map(({ id, title, name, poster_path }) => {
             return (
-              <li key={id} to={`/movies/${id}`}>
-                <img
-                  src={`https://image.tmdb.org/t/p/w342${poster_path}`}
-                  alt={title}
-                  width={260}
-                  height={350}
-                />
-              </li>
+              <MoviesImageList key={id}>
+                <Link to={`/movies/${id}`} state={{ from: location }}>
+                  <img
+                    src={`https://image.tmdb.org/t/p/w342${poster_path}`}
+                    alt={title}
+                    width={260}
+                    height={350}
+                  />
+                  <Text> {title}</Text>
+                </Link>
+
+                {/* {title || name} */}
+              </MoviesImageList>
             );
           })}
-        </ul>
+        </MoviesImage>
       )}
     </div>
   );
