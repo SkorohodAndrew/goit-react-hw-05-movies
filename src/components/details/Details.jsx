@@ -15,17 +15,17 @@ import {
 
 export const Details = () => {
   const { movieId } = useParams();
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [movies, setMovies] = useState(null);
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
 
   useEffect(() => {
-    setLoading(true);
+    // setLoading(true);
     searchMoviesDetails(movieId)
       .then(setMovies)
-      .catch(error => console.log(error))
-      .finally(setLoading(false));
+      .catch(error => console.log(error));
+    // .finally(setLoading(false));
   }, [movieId]);
 
   if (!movies) {
@@ -45,6 +45,7 @@ export const Details = () => {
           <TextTitle>{title}</TextTitle>
           <img
             src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+            alt={title}
             width={290}
             height={350}
           />

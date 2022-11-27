@@ -12,12 +12,12 @@ import {
 export const Home = () => {
   const location = useLocation();
   const [trends, setTrends] = useState([]);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
+    // setLoading(true);
     fetchMoviesTrending().then(setTrends);
-    setLoading(false);
+    // setLoading(false);
   }, []);
 
   return (
