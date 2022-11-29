@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { searchMoviesDetails } from 'components/fetch/Fetch';
-import { useParams, Link, useLocation } from 'react-router-dom';
+import { useParams, Link, useLocation, NavLink } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 import {
   CardMovies,
@@ -11,6 +12,8 @@ import {
   CardMoviesItem,
   MoviesGenresList,
   TextGenres,
+  TextMoviesInfo,
+  CardMoviesInfo,
 } from './DetailStyled';
 
 export const Details = () => {
@@ -71,6 +74,17 @@ export const Details = () => {
           </div>
         </CardMoviesItem>
       </CardMovies>
+
+      <CardMovies>
+        <TextMoviesInfo>Additional information</TextMoviesInfo>
+        <CardMoviesInfo>
+          <NavLink to="cast">Cast</NavLink>
+        </CardMoviesInfo>
+        <CardMoviesInfo>
+          <NavLink to="reviews">Reviews</NavLink>
+        </CardMoviesInfo>
+      </CardMovies>
+      <Outlet />
     </div>
   );
 };

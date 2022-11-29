@@ -8,21 +8,23 @@ import {
   MoviesImageImage,
   Title,
 } from './HomeStyled';
+import { Loader } from 'components/loader/Loader';
 
 export const Home = () => {
   const location = useLocation();
   const [trends, setTrends] = useState([]);
-  // const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // setLoading(true);
+    setLoading(true);
     fetchMoviesTrending().then(setTrends);
-    // setLoading(false);
+    setLoading(false);
   }, []);
 
   return (
     <div>
       <Title>Trending Today</Title>
+      {loading && <Loader />}
       <MoviesImage>
         {trends.length > 0 &&
           trends.map(({ id, title, poster_path }) => {

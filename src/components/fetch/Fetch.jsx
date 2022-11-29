@@ -51,3 +51,15 @@ export async function fetchMoviesActor(id) {
     console.log(error);
   }
 }
+
+export async function fetchMoviesReviews(id) {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/movie/${id}/reviews?api_key=${KEY}`
+    );
+    const arrayMovies = await response.data.results;
+    return arrayMovies;
+  } catch (error) {
+    console.log(error);
+  }
+}

@@ -8,7 +8,6 @@ export const CardMovies = styled.div`
   text-align: center;
   align-items: center;
   border-radius: 2px;
-
   // top: 50%;
   // left: 50%;
   box-shadow: 0 0 2rem #000;
@@ -73,4 +72,46 @@ export const ButtonBack = styled.button`
   :focus {
     background-color: #531919;
   }
+`;
+
+export const ButtonNav = styled.button`
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+
+  margin-left: auto;
+  margin-right: 20px;
+  padding: 10px 20px;
+  border: 0;
+
+  color: #e4c9c9;
+  background-color: darkred;
+  border-radius: 5px;
+
+  font-family: inherit;
+  font-size: 10px;
+  line-height: 15px;
+  font-style: normal;
+  min-width: 180px;
+
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  :hover,
+  :focus {
+    background-color: #531919;
+  }
+`;
+
+export const TextMoviesInfo = styled.h3`
+  color: #c5dbe7;
+  font-family: Montserrat;
+  padding: 20px;
+  margin: 0;
+`;
+
+export const CardMoviesInfo = styled.h3`
+  display: block;
+  margin-right: 20px;
+  text-decoration: none;
+  color: #c5dbe7;
 `;
