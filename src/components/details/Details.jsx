@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { searchMoviesDetails } from 'components/fetch/Fetch';
-import { useParams, Link, useLocation, NavLink } from 'react-router-dom';
+import { useParams, useLocation, NavLink, useNavigate } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 
 import {
@@ -21,7 +21,11 @@ export const Details = () => {
   // const [loading, setLoading] = useState(false);
   const [movies, setMovies] = useState(null);
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/';
+  // const backLinkHref = location.state?.from ?? '/movies';
+
+  const backLink = location.state?.from ?? '/';
+  const navigate = useNavigate();
+  const back = () => navigate(backLink);
 
   useEffect(() => {
     // setLoading(true);
@@ -39,9 +43,9 @@ export const Details = () => {
 
   return (
     <div>
-      <Link to={backLinkHref}>
-        <ButtonBack> Go back</ButtonBack>
-      </Link>
+      {/* <Link> */}
+      <ButtonBack onClick={back}> Go back</ButtonBack>
+      {/* </Link> */}
 
       <CardMovies>
         <CardMoviesItem>
@@ -78,10 +82,14 @@ export const Details = () => {
       <CardMovies>
         <TextMoviesInfo>Additional information</TextMoviesInfo>
         <CardMoviesInfo>
-          <NavLink to="cast">Cast</NavLink>
+          <NavLink to={'cast'} state={{ from: location.state?.from }}>
+            Cast
+          </NavLink>
         </CardMoviesInfo>
         <CardMoviesInfo>
-          <NavLink to="reviews">Reviews</NavLink>
+          <NavLink to={'reviews'} state={{ from: location.state?.from }}>
+            Reviews
+          </NavLink>
         </CardMoviesInfo>
       </CardMovies>
       <Outlet />
